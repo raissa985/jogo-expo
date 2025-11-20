@@ -17,10 +17,7 @@ var rotated = 0.0
 #variaveis exportaveis
 @export var Arrow : PackedScene
 
-@export var left = "Left"
-@export var right = "Right"
-@export var up = "Up"
-@export var down = "Down"
+
 @export var atck = "Atck"
 @export var dash = "Dash"
 
@@ -37,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	MovePlayer(delta)
 	
 	if  dir != Vector2.ZERO:
-		if Input.is_action_just_pressed("Dash") and not dashing and not dash_recharge:
+		if Input.is_action_just_pressed(dash) and not dashing and not dash_recharge:
 			start_dash()
 			dash_recharge = true
 			await get_tree().create_timer(2.0).timeout
@@ -59,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			rotated = 0.0
 			$AnimatedSprite2D.rotation_degrees = 0
 	
-	if Input.is_action_just_pressed("Atck1") and not shoting and not shoting_recharge:
+	if Input.is_action_just_pressed(atck) and not shoting and not shoting_recharge:
 		Arrow_Shoot()
 		shoting_recharge = true
 		await get_tree().create_timer(1.0).timeout

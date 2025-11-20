@@ -9,10 +9,15 @@ var Level = 1
 var Spd = 600
 var Xp = 0
 
+@export var left = "Left"
+@export var right = "Right"
+@export var up = "Up"
+@export var down = "Down"
+
 
 @export var max_health: int = 100
 @onready var current_health: int = max_health:
-	
+
 	set(value):
 		current_health = clampi(value, 0, max_health)
 		healthChanged.emit()
@@ -35,14 +40,14 @@ func _physics_process(delta: float) -> void:
 func MovePlayer(delta):
 	dir = Vector2()
 	
-	if Input.is_action_pressed("Up"):
+	if Input.is_action_pressed(up):
 		dir += Vector2.UP
-	if Input.is_action_pressed("Down"):
+	if Input.is_action_pressed(down):
 		dir += Vector2.DOWN
-	if Input.is_action_pressed("Left"):
+	if Input.is_action_pressed(left):
 		dir += Vector2.LEFT
 		$AnimatedSprite2D.flip_h = true
-	if Input.is_action_pressed("Right"):
+	if Input.is_action_pressed(right):
 		dir += Vector2.RIGHT
 		$AnimatedSprite2D.flip_h = false
 		
